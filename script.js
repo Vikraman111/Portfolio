@@ -86,7 +86,7 @@ const modalImages = modal.querySelector(".modal-images");
 const closeModal = modal.querySelector(".close-modal");
 const achievementItems = document.querySelectorAll(".achievement-item");
 const parallaxBg = document.querySelector(".parallax-bg");
-const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+// const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
 const navLinks = document.querySelector(".nav-links");
 
 // Typing Animation State
@@ -135,6 +135,9 @@ function initializeSlider(
   let touchStartX = 0;
   let touchEndX = 0;
 
+  if (window.innerWidth <= 768) {
+    return; // Do nothing for mobile
+  }
   function getItemsPerView() {
     if (window.innerWidth > 1200) return 3;
     if (window.innerWidth > 768) return 2;
@@ -310,23 +313,6 @@ document.addEventListener("keydown", (e) => {
     modal.classList.remove("active");
     document.body.style.overflow = "auto";
   }
-});
-
-// Mobile Menu Handlers
-mobileMenuBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-  const icon = mobileMenuBtn.querySelector("i");
-  icon.classList.toggle("fa-bars");
-  icon.classList.toggle("fa-times");
-});
-
-document.querySelectorAll(".nav-link").forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("active");
-    const icon = mobileMenuBtn.querySelector("i");
-    icon.classList.add("fa-bars");
-    icon.classList.remove("fa-times");
-  });
 });
 
 // Smooth Scroll
